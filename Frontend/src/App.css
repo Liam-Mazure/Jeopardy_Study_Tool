@@ -1,0 +1,54 @@
+body{
+  background-color: navy;
+}
+
+.card-page{
+  display: flex;
+  justify-content: center;
+}
+
+.card-container{
+  cursor: pointer;
+  background-color: dimgray;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width:80vw;
+  height: 50vh;
+  margin: 5rem;
+  border: .2rem solid goldenrod;
+}
+
+.question-text{
+  visibility: visible;
+  color: goldenrod;
+}
+
+.question-res{
+  visibility: hidden;
+}
+
+.btn{
+  cursor: pointer;
+  background-color: goldenrod;
+  color: navy;
+  border: .2px solid navy;
+  border-radius: .5rem;
+  height: 30px;
+  width: 60px;
+}
+
+.btn-container{
+  position: relative;
+  top:8rem;
+}
+
+#prev-btn{
+  position: relative;
+  right: 8rem;
+}
+
+#next-btn{
+  position: relative;
+  left: 8rem;
+}
