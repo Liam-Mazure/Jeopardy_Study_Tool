@@ -4,7 +4,9 @@ body{
 
 .card-page{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .card-container{
@@ -19,6 +21,11 @@ body{
   border: .2rem solid goldenrod;
 }
 
+.question-category{
+  color: navy;
+  border-bottom: .2rem dotted goldenrod;
+}
+
 .question-text{
   visibility: visible;
   color: goldenrod;
@@ -26,6 +33,7 @@ body{
 
 .question-res{
   visibility: hidden;
+  color: navy;
 }
 
 .btn{
@@ -39,16 +47,14 @@ body{
 }
 
 .btn-container{
-  position: relative;
-  top:8rem;
+  display:flex;
+  justify-content: space-around;
 }
 
 #prev-btn{
-  position: relative;
-  right: 8rem;
+  justify-content: flex-start;
 }
 
 #next-btn{
-  position: relative;
-  left: 8rem;
+  justify-content: flex-end;
 }
