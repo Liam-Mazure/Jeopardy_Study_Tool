@@ -1,0 +1,5 @@
+#Exclude DB
+Backend/JeopardyBackend/db.sqlite3
+
+#Exclude Json
+Backend/JeopardyBackend/JQuestions/data/questiondata.json

@@ -14,6 +14,7 @@ body{
   background-color: dimgray;
   display: flex;
   align-items: center;
+  justify-content:space-around;
   flex-direction: column;
   width:80vw;
   height: 50vh;
@@ -23,11 +24,14 @@ body{
 
 .question-category{
   color: navy;
+  margin-left: 1rem;
+  margin-right: 1rem;
   border-bottom: .2rem dotted goldenrod;
 }
 
 .question-text{
   visibility: visible;
+  margin: 2rem;
   color: goldenrod;
 }
 

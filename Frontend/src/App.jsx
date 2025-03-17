@@ -1,12 +1,15 @@
-import { useState } from 'react'
 import Card from './components/questionsCard'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
 
   return (
     <>
-      <Card/>
+      <Routes>
+        <Route path = "/"/>
+        <Route path = "/play" element = {<Card/>}/>
+      </Routes>
     </>
   )
 }

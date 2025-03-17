@@ -1,33 +1,49 @@
 import React from "react"
 import { useState, useEffect} from "react"
-import questions from "../assets/questiondata.json"
 
 function Card(){
     const [isHidden, setisHidden] = useState(true)
     const [question, setQuestion] = useState("Filler")
+    const [error, setError] = useState(null)
     const [historyStack, setHistoryStack] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
 
-    const getRandomQuestion = () => {
-        const randomIndex = Math.floor(Math.random() * questions.length)
-        return questions[randomIndex]
+    const getRandomQuestion = async () => {
+        try{
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/questions/play/`)
+            if(!response.ok){
+                throw new Error("Failed to fetch question data");
+            }
+            const data = await response.json();
+            return data;
+        }   
+            catch(err){
+                setError(err.message)
+                return null;
+            }
+
     };
 
-    const handleNextQuestion = () => {
+    const handleNextQuestion = async () => {
         if(currentIndex < historyStack.length - 1){
             setCurrentIndex( currentIndex + 1)
-            setQuestion(historyStack[currentIndex + 1])
+            setQuestion(historyStack[currentIndex + 1]);
         }else{
-            const newQuestion = getRandomQuestion()
-            setQuestion(newQuestion)
-            setHistoryStack([...historyStack, newQuestion]);
-            setCurrentIndex(historyStack.length)
+            console.log("Fetching new question...");
+            const newQuestion = await getRandomQuestion();
+            console.log("Fetched Question: ", newQuestion);
+            if(newQuestion){
+                setHistoryStack([...historyStack, newQuestion]);
+                setCurrentIndex(historyStack.length)
+                setQuestion(newQuestion)
+            } else{
+                console.log("No question recived")
+            }
         }
     }
 
     const handlePrevQuesion = () => {
         if(currentIndex > 0){
-            // const prevQuestion = historyStack.pop();
             setCurrentIndex( currentIndex - 1)
             setHistoryStack([...historyStack]);
             setQuestion(historyStack[currentIndex - 1]);
@@ -43,11 +59,11 @@ function Card(){
                 </h1>
                 
                 <h2 className="question-text">
-                    {question.question_text}
+                    {question.questionText}
                 </h2>
 
                 <p className="question-res" style={{visibility : isHidden ? "hidden" : "visible"}}>
-                    {question.question_res}
+                    {question.questionRes}
                 </p>
             </div>
         </div>
