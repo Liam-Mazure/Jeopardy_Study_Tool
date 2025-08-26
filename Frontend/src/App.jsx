@@ -1,13 +1,13 @@
 import Card from './components/questionsCard'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path = "/"/>
+        <Route path = "/" element={<Navigate to="/play" replace/>}/>
         <Route path = "/play" element = {<Card/>}/>
       </Routes>
     </>
