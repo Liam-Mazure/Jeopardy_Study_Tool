@@ -1,13 +1,28 @@
 from django.shortcuts import render, HttpResponse
 import random
+import os
 from django.http import JsonResponse
 from .models import Question
 from .serializers import QuestionDeserializer
+from django.views.generic import View
+from django.conf import settings
 
+def index(request):
+    index_path = os.path.join(settings.TEMPLATES[0]['DIRS'][0], 'index.html')
+    
+    if not os.path.exists(index_path):
+        return HttpResponse(f"Error: React build not found at {index_path}", status=500)
+    
+    return render(request, 'index.html')
 
 # Create your views here.
-def home(request):
-    return render(request, "home.html")
+class FrontendAppView(View):
+    def get(self, request):
+        index_path = os.path.join(settings.BASE_DIR.parent, 'frontend', 'dist', 'index.html')
+        if os.path.exists(index_path):
+            with open(index_path) as f:
+                return HttpResponse(f.read())
+        return HttpResponse("React build not found. Run `npm run build` in Frontend.", status=501)
 
 def play(request):
     question_count = Question.objects.count()

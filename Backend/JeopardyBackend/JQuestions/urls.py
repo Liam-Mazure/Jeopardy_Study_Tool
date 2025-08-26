@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, re_path
+from .views import play, FrontendAppView
 
 urlpatterns = [
-    path("questions/", views.home, name="home"),
-    path("questions/play/", views.play, name="play"),
-    path("questions/auto/", views.auto_play, name = "auto")
+    path("questions/play/", play, name="play"),
+    
+    #Regex: r -> raw string, ^ -> start of string, . -> any char, * -> zero or more of prev char, $ -> end of string
+    # Acts as a catch all matching with any URL 
+    re_path(r'^.*$', FrontendAppView.as_view(), name="frontend"),
 ]
