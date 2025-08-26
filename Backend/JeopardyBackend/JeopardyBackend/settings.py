@@ -11,17 +11,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
-import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    BASE_DIR.parent / "frontend" / "dist" / "assests"
-]
-STATIC_ROOT = BASE_DIR / "staticfiles_root"
+# STATIC_URL = "/static/"
+# STATICFILES_DIRS = [
+#     BASE_DIR.parent / "Frontend" / "dist" / "assets"
+# ]
+# STATIC_ROOT = BASE_DIR / "staticfiles_root"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -30,7 +28,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles_root"
 SECRET_KEY = 'django-insecure-i_reb&m8z%x!y$ws#%skfy8d!_d3onaqryjhf&l$^ygp2u(##t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://jeopardy-study-tool-frontend.onrender.com",
@@ -62,14 +60,16 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ALLOWED_HOSTS = ['https://jeopardy-study-tool.onrender.com']
+# CORS_ALLOW_ALL_ORIGINS = True # Change when build?
+
+ALLOWED_HOSTS = ['https://jeopardy-study-tool.onrender.com', '127.0.0.1']
 
 ROOT_URLCONF = 'JeopardyBackend.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.parent / 'frontend' / 'dist'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,7 +136,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-logger = logging.getLogger(__name__)
-logger.warning(f"TEMPLATE DIRS: {TEMPLATES[0]['DIRS']}")
-logger.warning(f"STATICFILES_DIRS: {STATICFILES_DIRS}")

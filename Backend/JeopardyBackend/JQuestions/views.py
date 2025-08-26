@@ -8,15 +8,16 @@ from django.views.generic import View
 from django.conf import settings
 
 # Create your views here.
-class FrontendAppView(View):
-    def get(self, request):
-        index_path = os.path.join(settings.BASE_DIR.parent, 'frontend', 'dist', 'index.html')
-        if os.path.exists(index_path):
-            with open(index_path) as f:
-                return HttpResponse(f.read())
-        return HttpResponse("React build not found. Run `npm run build` in Frontend.", status=501)
+# class FrontendAppView(View):
+#     def get(self, request):
+#         index_path = os.path.join(settings.BASE_DIR.parent, 'frontend', 'dist', 'index.html')
+#         if os.path.exists(index_path):
+#             with open(index_path) as f:
+#                 return HttpResponse(f.read())
+#         return HttpResponse("React build not found. Run `npm run build` in Frontend.", status=501)
 
 def play(request):
+    print("play view called")
     question_count = Question.objects.count()
 
     if question_count == 0:
