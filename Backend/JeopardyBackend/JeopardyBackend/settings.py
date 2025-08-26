@@ -15,11 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# STATIC_URL = "/static/"
-# STATICFILES_DIRS = [
-#     BASE_DIR.parent / "Frontend" / "dist" / "assets"
-# ]
-# STATIC_ROOT = BASE_DIR / "staticfiles_root"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -60,9 +55,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True # Change when build?
+CORS_ALLOW_ALL_ORIGINS = True # Change when build?
 
-ALLOWED_HOSTS = ['https://jeopardy-study-tool.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['jeopardy-study-tool.onrender.com', '127.0.0.1']
 
 ROOT_URLCONF = 'JeopardyBackend.urls'
 
