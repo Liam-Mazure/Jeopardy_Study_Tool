@@ -7,14 +7,6 @@ from .serializers import QuestionDeserializer
 from django.views.generic import View
 from django.conf import settings
 
-def index(request):
-    index_path = os.path.join(settings.TEMPLATES[0]['DIRS'][0], 'index.html')
-    
-    if not os.path.exists(index_path):
-        return HttpResponse(f"Error: React build not found at {index_path}", status=500)
-    
-    return render(request, 'index.html')
-
 # Create your views here.
 class FrontendAppView(View):
     def get(self, request):
