@@ -22,6 +22,10 @@ body{
   border: .2rem solid goldenrod;
 }
 
+#loading-qs{
+  color: navy;
+}
+
 .question-category{
   color: navy;
   margin-left: 1rem;

@@ -7,8 +7,12 @@ function Card(){
     const [error, setError] = useState(null)
     const [historyStack, setHistoryStack] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [loading, setLoading] = useState(false)
+    const [firstLoad, setFirstLoad] = useState(true)
 
     const getRandomQuestion = async () => {
+        if(firstLoad) setLoading(true);
+        setError(null);
         try{
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/questions/play/`)
             if(!response.ok){
@@ -20,6 +24,10 @@ function Card(){
             catch(err){
                 setError(err.message)
                 return null;
+            }
+            finally{
+                setLoading(false);
+                setFirstLoad(false);
             }
 
     };
@@ -54,6 +62,12 @@ function Card(){
         <>
         <div className="card-page">
             <div className="card-container" onClick={() => setisHidden(!isHidden)}>
+                {loading &&(
+                    <h1 id="loading-qs">Loading Questions...</h1>
+                )}
+                {error &&(
+                    <p style={{color: "red"}}>{error}</p>
+                )}
                 <h1 className="question-category">
                     {question.category}
                 </h1>
